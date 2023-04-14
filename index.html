@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            body, html {
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    </head>
+
+    <body>
+       <script type="text/javascript">
+        //audio based variables
+        let angleA = 0, angleB = 0, angleC = 0, angleD = 0, angleE = 0, angleF = 0, angleG = 0, angleH = 0, angleI = 0;
+
+        let coneHeight = 600;
+        let numCircles = 9;
+        let setRedSpecularColor = true;
+
+        function setup() {
+            createCanvas(window.innerWidth, window.innerHeight, WEBGL);
+        }
+
+        function draw() {
+            background(0);
+            orbitControl();
+
+            beginShape(TRIANGLE_FAN);
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 400 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleA * i);
+                let y = offset * sin(angleA * i);
+
+                noFill();
+                stroke(255);
+                ellipse(x, y, d);
+
+                for (let j = 0; j <= 8; j++) {
+                    let px = cos(j * angle2 + angleA * i) * r;
+                    let py = sin(j * angle2 + angleA * i) * r;
+                    let pz = map(i, 0, numCircles, 0, coneHeight);
+
+                    vertex(px, py, pz);
+                    vertex(cos(j * angle2 + angleA * (i + 1)) * (i + 1) * 400 / numCircles, sin(j * angle2 + angleA * (i + 1)) * (i + 1) * 400 / numCircles, map(i + 1, 0, numCircles, 0, coneHeight));
+                }
+            }
+            endShape();
+            angleA += 0.005;
+            angleB += 0.005;
+            angleC += 0.005;
+            angleD += 0.005;
+            angleE += 0.005;
+            angleF += 0.005;
+            angleG += 0.005;
+            angleH += 0.005;
+            angleI += 0.005;
+
+            //spiral 2
+            beginShape(LINES)
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleB * i);
+                let y = offset * sin(angleB * i);
+
+                noFill();
+                stroke(255);
+                ellipse(-300, -250, d);
+
+                for (let j = 0; j <= 8; j++) {
+                    let px = cos(j * angle2 + angleA * i) * r;
+                    let py = sin(j * angle2 + angleA * i) * r;
+                    let pz = map(i, 0, numCircles, 0, coneHeight);
+
+                    vertex(px, py, pz);
+                    vertex(cos(j * angle2 + angleA * (i + 1)) * (i + 1) * 400 / numCircles, sin(j * angle2 + angleA * (i + 1)) * (i + 1) * 400 / numCircles, map(i + 1, 0, numCircles, 0, coneHeight));
+                }
+            }
+            endShape();
+
+            //spiral 3
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleC * i);
+                let y = offset * sin(angleC * i);
+
+                noFill();
+                stroke(255);
+                ellipse(-400, 0, d);
+            }
+
+            //spiral 4
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleD * i);
+                let y = offset * sin(angleD * i);
+
+                noFill();
+                stroke(255);
+                ellipse(-300, 250, d);
+            }
+
+            //spiral 5
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleE * i);
+                let y = offset * sin(angleE * i);
+
+                noFill();
+                stroke(255);
+                ellipse(0, 300, d);
+            }
+
+            //spiral 6
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleF * i);
+                let y = offset * sin(angleF * i);
+
+                noFill();
+                stroke(255);
+                ellipse(0, -300, d);
+            }
+
+            //spiral 7
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleG * i);
+                let y = offset * sin(angleG * i);
+
+                noFill();
+                stroke(255);
+                ellipse(300, -250, d);
+            }
+
+            //spiral 8
+            for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleH * i);
+                let y = offset * sin(angleH * i);
+
+                noFill();
+                stroke(255);
+                ellipse(400, 0, d);
+            }
+
+             //spiral 9
+             for (let i = 1; i < numCircles; i++) {
+                let r = i * 200 / numCircles;
+                let d = r * 2;
+                let angle2 = TWO_PI / numCircles;
+                let offset = d / 100;
+                let x = offset * cos(angleI * i);
+                let y = offset * sin(angleI * i);
+
+                noFill();
+                stroke(255);
+                ellipse(300, 250, d);
+            }
+        }
+       </script> 
+    </body>
+</html>
